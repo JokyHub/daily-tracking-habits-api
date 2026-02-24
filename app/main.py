@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 import uvicorn
 from app.routes.v1 import users, checkin, habits
+from app.configs.database import Base, engine
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Daily Tracking Habits API",
