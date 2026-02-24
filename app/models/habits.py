@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from app.configs.database import Base
 from datetime import datetime
 from sqlalchemy.orm import relationship
@@ -10,7 +10,7 @@ class Habit(Base):
     name = Column(String, unique=False, nullable=False)
     description = Column(String, nullable=True)
 
-    user_id = Column(Integer, nullable=False)  # Foreign key to users.id
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)  # Foreign key to users.id
 
     current_streak = Column(Integer, default=0, nullable=False)
     longest_streak = Column(Integer, default=0, nullable=False)
