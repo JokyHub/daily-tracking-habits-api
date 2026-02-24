@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
-
+from typing import Optional
 
 class HabitBase(BaseModel):
     name: str
@@ -12,11 +12,11 @@ class HabitCreate(HabitBase):
 class HabitResponse(HabitBase):
     id: int
     name: str
-    description: str = None
+    description: Optional[str] = None
     user_id: int
     current_streak: int
     longest_streak: int
-    last_checkin_date: datetime = None
+    last_checkin_date: Optional[datetime] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
