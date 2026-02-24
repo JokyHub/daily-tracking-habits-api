@@ -8,8 +8,10 @@ class Checkin(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     habit_id = Column(Integer, ForeignKey("habits.id"), nullable=False)
-    date = Column(DateTime, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    checkin_date = Column(DateTime, default=datetime.utcnow, nullable=False)
 
-    habit = relationship("Habit")
+    habit = relationship("Habit", back_populates="checkins")
+    user = relationship("User", back_populates="checkins")
 
 

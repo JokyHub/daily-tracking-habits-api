@@ -17,5 +17,6 @@ class Habit(Base):
     last_checkin_date = Column(DateTime, nullable=True)
 
     user = relationship("User")
+    checkins = relationship("Checkin", back_populates="habit", cascade="all, delete")
 
 

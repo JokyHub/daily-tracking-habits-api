@@ -3,6 +3,8 @@ import uvicorn
 from app.routes.v1 import users, checkin, habits
 from app.configs.database import Base, engine
 
+
+Base.metadata.drop_all(bind=engine) 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
